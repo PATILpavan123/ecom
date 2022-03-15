@@ -1,0 +1,35 @@
+  #vi nginx-deploy              .......(use kind: deployment instead of pod)
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  selector:
+    matchLabels:
+      run: my-nginx
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+
+   #kubectl apply -f nginx-deploy
+
+   #  kubectl get pods
+
+   #  kubectl get pods -l run=my-nginx -o wide
+
+kubectl delete pod my-nginx-5dc4865748-92dz5
+
+it will create a new pod bcoz we specify 2 pod in replicaset
+
+kubectl get all
+kubectl delete <resources type>/<resources name>
